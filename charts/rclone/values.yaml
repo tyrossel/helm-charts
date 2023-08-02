@@ -62,6 +62,46 @@ ingress:
      hosts:
        - rclone.apps.172-18-0-100.nip.io
 
+metrics:
+  enabled: true
+
+  serviceMonitor:
+    autodetect: true
+    enabled: true
+    annotations: {}
+    additionalLabels: {}
+    # ServiceMonitor namespace. Default to Velero namespace.
+    # namespace:
+    # ServiceMonitor connection scheme. Defaults to HTTP.
+    # scheme: ""
+    # ServiceMonitor connection tlsConfig. Defaults to {}.
+    # tlsConfig: {}
+  prometheusRule:
+    enabled: false
+    # Additional labels to add to deployed PrometheusRule
+    additionalLabels: {}
+    # PrometheusRule namespace. Defaults to Velero namespace.
+    # namespace: ""
+    # Rules to be deployed
+    spec: []
+    # - alert: VeleroBackupPartialFailures
+    #   annotations:
+    #     message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} partialy failed backups.
+    #   expr: |-
+    #     velero_backup_partial_failure_total{schedule!=""} / velero_backup_attempt_total{schedule!=""} > 0.25
+    #   for: 15m
+    #   labels:
+    #     severity: warning
+    # - alert: VeleroBackupFailures
+    #   annotations:
+    #     message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} failed backups.
+    #   expr: |-
+    #     velero_backup_failure_total{schedule!=""} / velero_backup_attempt_total{schedule!=""} > 0.25
+    #   for: 15m
+    #   labels:
+    #     severity: warning
+
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
