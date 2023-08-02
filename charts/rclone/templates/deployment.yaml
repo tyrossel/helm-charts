@@ -47,6 +47,14 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          command:
+            - rclone
+            - rcd
+            - --rc-addr=:80
+            - --rc-enable-metrics
+            - --rc-web-gui
+            - --rc-web-gui-no-open-browser
+            - --rc-no-auth
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
