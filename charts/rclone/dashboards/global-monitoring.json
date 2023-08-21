@@ -30,6 +30,74 @@
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P5DCFC7561CCDE821"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "displayName": "Errors",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 38,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P5DCFC7561CCDE821"
+          },
+          "editorMode": "code",
+          "expr": "increase(rclone_errors_total{service=\"rclone\"}[$__range])",
+          "instant": false,
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": {
         "type": "prometheus"
@@ -38,7 +106,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 11,
       "panels": [],
@@ -73,7 +141,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 1
+        "y": 9
       },
       "hideTimeOverride": true,
       "id": 6,
@@ -190,7 +258,7 @@
         "h": 3,
         "w": 4,
         "x": 4,
-        "y": 1
+        "y": 9
       },
       "hideTimeOverride": true,
       "id": 20,
@@ -291,7 +359,7 @@
         "h": 6,
         "w": 5,
         "x": 8,
-        "y": 1
+        "y": 9
       },
       "id": 8,
       "links": [],
@@ -688,7 +756,7 @@
         "h": 6,
         "w": 6,
         "x": 13,
-        "y": 1
+        "y": 9
       },
       "id": 19,
       "options": {
@@ -859,7 +927,7 @@
         "h": 6,
         "w": 5,
         "x": 19,
-        "y": 1
+        "y": 9
       },
       "id": 18,
       "options": {
@@ -975,7 +1043,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 4
+        "y": 12
       },
       "hideTimeOverride": true,
       "id": 35,
@@ -1085,7 +1153,7 @@
         "h": 3,
         "w": 4,
         "x": 4,
-        "y": 4
+        "y": 12
       },
       "hideTimeOverride": true,
       "id": 36,
@@ -1223,7 +1291,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 7
+        "y": 15
       },
       "id": 9,
       "links": [],
@@ -1650,7 +1718,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 7
+        "y": 15
       },
       "hideTimeOverride": true,
       "id": 4,
@@ -1790,7 +1858,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 7
+        "y": 15
       },
       "hideTimeOverride": true,
       "id": 37,
@@ -1935,7 +2003,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 14
+        "y": 22
       },
       "id": 15,
       "options": {
@@ -2126,7 +2194,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 14
+        "y": 22
       },
       "id": 14,
       "options": {
@@ -2259,7 +2327,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 14
+        "y": 22
       },
       "id": 13,
       "options": {
@@ -2393,7 +2461,7 @@
         "h": 6,
         "w": 7,
         "x": 0,
-        "y": 21
+        "y": 29
       },
       "id": 16,
       "options": {
@@ -2527,7 +2595,7 @@
         "h": 6,
         "w": 9,
         "x": 7,
-        "y": 21
+        "y": 29
       },
       "id": 17,
       "options": {
@@ -2886,13 +2954,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Rclone Metrics",
   "uid": "16iXCVM7zsdgf",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
