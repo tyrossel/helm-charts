@@ -948,7 +948,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "P5DCFC7561CCDE821"
       },
       "description": "Since rclone process started",
       "fieldConfig": {
@@ -1000,7 +1001,7 @@
             "type": "prometheus"
           },
           "editorMode": "code",
-          "expr": "rclone_bytes_transferred_total",
+          "expr": "increase(rclone_bytes_transferred_total[$__range])",
           "groupBy": [
             {
               "params": [
@@ -1045,7 +1046,7 @@
           ]
         }
       ],
-      "title": "Total Data Transferred",
+      "title": "Data Transferred in the time range",
       "type": "stat"
     },
     {
@@ -2856,7 +2857,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -2885,13 +2886,13 @@
     ]
   },
   "time": {
-    "from": "2023-08-21T08:20:08.949Z",
-    "to": "2023-08-21T08:57:45.666Z"
+    "from": "now-6h",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Rclone Metrics",
   "uid": "16iXCVM7zsdgf",
-  "version": 10,
+  "version": 11,
   "weekStart": ""
 }
