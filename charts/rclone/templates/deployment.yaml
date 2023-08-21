@@ -29,6 +29,8 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          env:
+            # TODO: Import from values.yaml / cm / secrets
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -50,11 +52,15 @@ spec:
           command:
             - rclone
             - rcd
-            - --rc-addr=:80
+            - --rc-addr=:{{ .Values.service.port }}
             - --rc-enable-metrics
             - --rc-web-gui
             - --rc-web-gui-no-open-browser
             - --rc-no-auth
+          volumeMounts:
+            - name: rclone-config
+              mountPath: /config/rclone
+              readOnly: true
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -67,3 +73,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+      - name: rclone-config
+        configMap:
+          name: rclone-backend

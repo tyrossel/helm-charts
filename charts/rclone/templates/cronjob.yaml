@@ -1,0 +1,30 @@
+# apiVersion: batch/v1
+# kind: CronJob
+# metadata:
+#   name: backup
+# spec:
+#   schedule: "*/1 * * * *"
+#   jobTemplate:
+#     spec:
+#       template:
+#         spec:
+#           containers:
+#           - name: hello
+#             image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+#             imagePullPolicy: IfNotPresent
+#             command:
+#               - rclone
+#               - rc
+#               - --rc-addr
+#               - rclone
+#               - lsd
+#               - "myminio:"
+#             #volumeMounts:
+#             #  - name: rclone-config
+#             #    mountPath: /config/rclone
+#             #    readOnly: true
+#           restartPolicy: OnFailure
+#           volumes:
+#           - name: rclone-config
+#             configMap:
+#               name: rclone-backend

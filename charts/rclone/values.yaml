@@ -38,13 +38,13 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 5572
 
 ingress:
   enabled: true
   className: ""
   annotations:
-    cert-manager.io/cluster-issuer: ca-issuer
+    cert-manager.io/cluster-issuer: ca-issuer # TODO: Change to letsencrypt-staging
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: traefik-withclustername@kubernetescrd
     traefik.ingress.kubernetes.io/router.tls: "true"
@@ -126,3 +126,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+grafana_dashboard:
+  enabled: true
